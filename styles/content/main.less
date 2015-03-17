@@ -424,20 +424,41 @@ body {
 				color: #898989;					
 			}
 			input {
-				background: #edf8f9;
-				border: 1px solid #c2e5e9;
+				background: #f5f5f5;
+				border: 1px solid #e0dede;
 				-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 				-moz-box-sizing: borderder-box;    /* Firefox, other Gecko */
 				box-sizing: border-box;         /* Opera/IE 8+ */
-				color: #33a8b5;
+				color: #cbcbcb;
 				font-family: 'Lato', sans-serif;
 				margin-top: 5px;
 				padding: 10px;
 				width: 100%;
+				&:active, &:focus {
+					background: #e8f6f7;
+					border-color: #b3dee3;
+					color: #0092a2;
+				}
+			}
+			.user-role, .user-status {
+				position: relative;
+				input {
+					padding-right: 44px;
+				}
+				.dropdown-arrow {
+					border-bottom: 0;
+					border-left: 4px solid transparent;
+					border-right: 4px solid transparent;
+					border-top: 4px solid #cbcbcb;
+					cursor: pointer;
+					position: absolute;
+					right: 20px;
+					top: 42px;
+				}
 			}
 		}
 		.button {
-			.cancel, .save {
+			.cancel, .add {
 				float: left;
 				font-size: 24px;
 				padding: 30px 0;
@@ -449,7 +470,7 @@ body {
 				background: #f9f9f9;
 				color: #33a8b5;
 			}
-			.save {
+			.add {
 				background: #33a8b5;
 				border: 1px solid #a3ced3;
 				color: #ffffff;
