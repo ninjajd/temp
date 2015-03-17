@@ -1,0 +1,43 @@
+footer {
+	margin-top: 40px;
+	>span {
+		color: #cbcbcb;
+		font-size: 12px;
+		padding-bottom: 50px;
+	}
+	.loading {
+		background: #59b8c3;
+		bottom: 0;
+		height: 48px;
+		left: 50%;
+		margin-left: -60px;
+		.opacity(80);
+		position: fixed;
+		width: 160px;
+		span {
+			&.dot, &.dot:before, &.dot:after {
+				background: #ffffff;
+				.border-radius(50%);
+				height: 10px;
+				margin-top: -5px;
+				position: absolute;
+				top: 50%;
+				width: 10px;
+			}
+			&.dot {
+				margin-left: -5px;
+				left: 50%;
+			}
+			&.dot:before, &.dot:after {
+				content: "";
+				top: 5px;
+			}
+			&.dot:before {
+				left: -16px;
+			}
+			&.dot:after {
+				left: 16px;
+			}
+		}
+	}
+}
