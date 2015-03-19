@@ -252,8 +252,23 @@ body {
 				}
 				&.unread {
 					font-weight: bold;
+					.row-view {
+						background: #e8f6f7;
+						border: 1px solid #b3dee3;
+						color: #0092a2;
+					}
 					&.marked {
+						background: #ffedee;
 						color: #ff1d25;
+						.row-view {
+							background: #f7dfdf;
+							border: 1px solid #ff8e92;
+							color: #ff1d25;
+							z-index: 2;
+						}
+						&.even {
+							background: #ffffff;
+						}
 					}
 				}
 				.row-date {
@@ -301,16 +316,16 @@ body {
 					width: 7%;
 				}
 				.row-status {
-					width: 5%;
+					width: 8%;
 				}
 				.row-upload {
-					width: 10%;
+					width: 11%;
 				}
 				.row-location {
-					width: 8%;
+					width: 5%;
 				}
 				.row-time {
-					width: 8%;
+					width: 10%;
 				}
 				.row-patient-name {
 					width: 8%;
@@ -319,23 +334,29 @@ body {
 					width: 5%;
 				}
 				.row-visit {
-					width: 8%;
+					width: 5%;
 				}
 				.row-device-type {
 					width: 8%;
 				}
 				.row-model {
-					width: 8%;
+					width: 5%;
 				}
 				.row-serial {
-					width: 8%;
+					width: 5%;
 				}
 				.row-mfr {
 					width: 8%;
 				}
 				.row-view {
+					background: #f8f8f8;
+					border: 1px solid #e0dede;
+					color: #0092a2;
 					padding: 0;
+					position: absolute;
+					right: 0;
 					text-align: center;
+					top: -1px;
 					width: 7%;
 				}
 			}
