@@ -9,14 +9,39 @@ body {
 		padding: 2px 3px;
 		position: absolute;
 	}
-	.exclamation-mark {
-		border-bottom: 8px solid #ff1d25;
-		border-left: 8px solid #ff1d25;
-		border-right: 8px solid #ff1d25;
-		border-top: 8px solid #ff1d25;
-		color: #ffffff;
+	.exclamation {
+		position: relative; /* So we can position the content as absolute */
+ 
+		/* Using the borders to create a triangle */
+		border-left: 16px solid transparent;
+		border-right: 16px solid transparent;
+		border-bottom: 1.732em solid #ff1d25;
+		 
+		top: -16px; /* Correction because of the CSS Triangle trick*/ 
+	}
+	.exclamation:before {
 		position: absolute;
-		top: 20px;
+		content: " ";
+		/* Using the borders to create a triangle */
+		border-left: 0.8em solid transparent;
+		border-right: 0.8em solid transparent;
+		border-bottom: 1.4722em solid #ff1d25;
+		top: 1.275em;
+		left: -0.8em; 
+	}
+	.exclamation:after {
+		content: "!";
+		position: absolute;
+		/* Position the character over the triangle
+		* These values depend very much on the font used.
+		*/
+		top: 5px; /* top of the yellow triangle */
+		left: -5px;
+		 
+		font-size: 1.4722em;
+		color: #ffffff;
+		height: 0.99em;
+		width: 1.077em; 
 	}
 	#content {
 		position: relative;
@@ -33,7 +58,7 @@ body {
 				border-top: 8px solid #cbcbcb;
 				margin-left: 20px;
 				position: absolute;
-				top: 0;
+				top: 18px;
 			}
 		}
 		button {
@@ -243,6 +268,9 @@ body {
 						}
 						&.row-active {
 							border-right: 0;
+						}
+						&.row-view {
+							border: 0;
 						}
 					}
 					.row-edit {
