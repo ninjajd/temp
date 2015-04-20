@@ -2,35 +2,39 @@ header {
 	margin-bottom: 46px;
 	margin-top: 27px;
 	position: relative;
-	.interrogations, .setting, .user {
+	.links {
 		color: #cbcbcb;
-		position: relative;
-		span {
-			margin-right: 10px;
-			vertical-align: bottom;
-		}		
-	}
-	.interrogations {
-		position: absolute;
-		right: 230px;
-		top: 9px;
-		.alert {
-			left: 9px;		
-			top: -13px;
-		}
-	}
-	.setting {
-		position: absolute;
-		right: 150px;
-		top: 9px;
-		.alert {
-			left: 14px;
-			top: -13px;
-		}
-	}
-	.user {
 		position: absolute;
 		right: 0;
 		top: 9px;
+		div {
+			float: left;
+			margin-left: 40px;
+			span {
+				vertical-align: bottom;
+				&.sprites_icon {
+					margin-right: 5px;
+				}
+				&.username {						
+					font-weight: bold;
+					margin-right: 3px;
+				}
+			}
+		}
+		.interrogations {
+			.alert {
+				left: 9px;		
+				top: -13px;
+			}
+		}
+		.setting {
+			.alert {
+				left: 14px;
+				top: -13px;
+			}
+		}
+	}
+	.interrogations, .setting, .user {		
+		position: relative;			
 	}	
 }

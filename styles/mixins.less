@@ -11,37 +11,48 @@
 		display: block;
 		height: 0;
 		clear: both;
+		clear: both;
 		visibility: hidden;
 	}
 }
 // -------------------- Parametric Mixin (+CrossBrowser CSS3 Support) -------------------- //
 .font (@font, @size: 16) {
 	font-family: @font;
+	font-size: round(@size*(10/16))/10em;
 	font-size: round(@size*(10/16))/10rem;
 }
 .font (@font, @size, @weight) when not (isnumber(@weight)) {
 	font-family: @font;
+	font-size: round(@size*(10/16))/10em;
 	font-size: round(@size*(10/16))/10rem;
 	font-weight: @weight;
 }
 .font (@font, @size, @height) when (isnumber(@height))  {
 	font-family: @font;
+	font-size: round(@size*(10/16))/10em;
 	font-size: round(@size*(10/16))/10rem;
 	line-height: @height;
 }
 .font (@font, @size, @weight, @height) {
 	font-family: @font;
+	font-size: round(@size*(10/16))/10em;
 	font-size: round(@size*(10/16))/10rem;
 	font-weight: @weight;
 	line-height: @height;
 }
 .font-size(@size){
+	font-size: round(@size*(10/16))/10em;
 	font-size: round(@size*(10/16))/10rem;
 }
 .opacity (@percent) {
 	filter: ~"alpha(opacity=@{percent})";
 	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})";
 	opacity: @percent/100;
+}
+.opacity (@percent, imp) {
+	filter: ~"alpha(opacity=@{percent})" !important;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percent})" !important;
+	opacity: @percent/100 !important;
 }
 
 .border-radius (@radius) {
@@ -173,4 +184,171 @@
 	   -moz-user-select: @param;
 	    -ms-user-select: @param;
 			user-select: @param;
+}
+.make-button(@font:nova-sb; @radius:3px;){
+	font-family: @font;
+	.font(@font, 11, normal, 18px);
+	padding:5px 9px;
+	display: inline-block;
+	background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	background-color: #fff;
+	color:@form-text-color;
+	border:1px solid @border-color-base;
+	.border-radius(@radius);
+	margin-bottom: 0; // For input.btn
+	vertical-align: middle;
+	cursor: pointer;
+	white-space: nowrap;
+	.user-select(none);
+	position: relative;
+	&:hover{
+		z-index: 2;
+	}
+	html.dj_gecko input&{padding: 7px 10px 6px; }
+	.varientAll(
+		@grdTop, @grdBot, @boxShadowClr,
+		@brdrClr, @txtClr,
+		@paddingV, @paddingH,
+		@fontSize, @lineHeight, @font,
+	){
+		.gradientV(@grdTop, @grdBot);
+		.box-shadow(inset 0 2px 2px @boxShadowClr);
+		border-color: @brdrClr; color:@txtClr;
+		text-shadow:0 -1px 1px darken(@grdBot, 10%);
+		padding: @paddingV @paddingH;
+		.font(@font, @fontSize, @lineHeight, @lineHeight);
+	}
+	.varientColor(@grdTop, @grdBot){
+		.gradientV(@grdTop, @grdBot);
+		border-color: darken(@grdBot, 10%);
+		color: darken(@grdBot, 60%);
+	}
+	.varientColor(@grdTop, @grdBot, @txtClr){
+		.gradientV(@grdTop, @grdBot);
+		border-color: darken(@grdBot, 11%);
+		text-shadow:0 -1px 1px darken(@grdBot, 7%);
+		color: @txtClr;
+	}
+	.varientColor(@grdTop, @grdBot, @txtClr, @boxShadowClr){
+		.gradientV(@grdTop, @grdBot);
+		border-color: darken(@grdBot, 11%);
+		color:@txtClr;
+		.box-shadow(inset 0 2px 2px @boxShadowClr);
+		text-shadow:0 -1px 1px darken(@grdBot, 7%);
+	}
+	.varientColor(@grdTop, @grdBot, @txtClr, @boxShadowClr, @brdrClr){
+		.gradientV(@grdTop, @grdBot);
+		.box-shadow(inset 0 2px 2px @boxShadowClr);
+		border-color: @brdrClr;
+		color:@txtClr;
+		text-shadow:0 -1px 1px darken(@grdBot, 10%);
+	}
+	.varientColorFlat(@bg:transparent, @txtClr:#fff, @boxShadowClr:transparent, @brdrClr:transparent){
+		background:@bg;
+		.box-shadow(inset 0 2px 2px @boxShadowClr);
+		border-color: @brdrClr;
+		color:@txtClr;
+	}
+	.varientSize(@paddingV:5px, @paddingH:10px, @fontSize:11, @lineHeight:18px, @font:nova-sb){
+		padding: @paddingV @paddingH;
+		.font(@font, @fontSize, @lineHeight, @lineHeight);
+		html.dj_gecko input&{padding: @paddingV @paddingH; }
+	}
+	.iconic(){
+		padding: 0;
+		i{
+			margin: 8px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.label{
+			vertical-align: middle;
+			margin-right: 8px;
+		}
+		.large&{
+			i{
+				margin: 12px 12px 13px;
+			}
+			.label{
+				margin-right: 12px;
+			}
+		}
+		&.rtl{
+			direction: rtl;
+			.label{
+				margin-right: 0;
+				margin-left: 8px;
+			}
+			.large&{
+				label{
+					margin-left: 12px;
+				}
+			}
+		}
+		[class^="rtl"] &{
+			direction: ltr;
+			&.rtl{
+				direction: rtl;
+			}
+		}
+	}
+	.waiting(){
+		i{
+			display: none;
+		}
+		span.wait{
+			display: inline-block;
+			margin: 8px 9px 8px 10px;
+			vertical-align: middle;
+		}
+	}
+	.disable(){
+		cursor: default;
+		.opacity(50);
+		pointer-events: none;
+	}
+}
+.button(
+	@size:1;
+	@brdrClr:@border-color-base;
+	@padding:@button-padding;
+	@fontSize:11;
+	@fontWeight:normal;
+	@lineHeight:18px;
+	@brdrWidth:1px;
+	@brdrStyle:solid;
+	@brdrRad:@button-border-radius;
+	){
+	@font-size:@size+15;
+	background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	color: @form-text-color;
+	// .gradientV(@grdTop; @grdBot);
+	background-color: #fff;
+	.border-radius(@brdrRad);
+	border:@brdrWidth @brdrStyle @brdrClr;
+	display: inline-block;
+	padding: @padding;
+	.font(nova-sb, @fontSize,@fontWeight, @lineHeight);
+	font-family: nova-sb;
+	font-size: @fontSize;
+	font-weight: @fontWeight;
+	line-height: @lineHeight;
+	margin-bottom: 0; // For input.button
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	white-space: nowrap;
+	.user-select(none);
+	.hover(){
+		.gradientV(@brdrClr; darken(@brdrClr, 6%););
+	}
+	.active(){
+		.gradientV(saturate(darken(@brdrClr, 4%), 10%);saturate(darken(@brdrClr, 4%), 10%));
+		.box-shadow(0 2px 2px darken(@brdrClr, 15%) inset);
+	}
+}
+.disable(){
+	cursor: default;
+	pointer-events: none;
+	.opacity(50);
 }
